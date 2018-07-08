@@ -1,0 +1,156 @@
+[
+    {
+        "id": "0",
+        "img": "../assets/foto/aymen.jpg",
+        "name": "Aymen",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "1",
+        "img": "../assets/foto/musa.jpg",
+        "name": "Luha",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "2",
+        "img": "../assets/foto/utente.png",
+        "name": "Rocco",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "3",
+        "img": "../assets/foto/utente.png",
+        "name": "Toninu",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "4",
+        "img": "../assets/foto/utente.png",
+        "name": "Gesu",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "5",
+        "img": "../assets/foto/utente.png",
+        "name": "Dio cane",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "6",
+        "img": "../assets/foto/utente.png",
+        "name": "Madonna laiada",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "7",
+        "img": "../assets/foto/utente.png",
+        "name": "La mia Sofia",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "8",
+        "img": "../assets/foto/utente.png",
+        "name": "Abramo Prete",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "9",
+        "img": "../assets/foto/utente.png",
+        "name": "Vas",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "10",
+        "img": "../assets/foto/utente.png",
+        "name": "Carlone",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "11",
+        "img": "../assets/foto/utente.png",
+        "name": "Rumeno",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "12",
+        "img": "../assets/foto/utente.png",
+        "name": "Damiano",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "13",
+        "img": "../assets/foto/utente.png",
+        "name": "Donati",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "14",
+        "img": "../assets/foto/utente.png",
+        "name": "Nuzzolè",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "15",
+        "img": "../assets/foto/utente.png",
+        "name": "Verme di terra",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "16",
+        "img": "../assets/foto/utente.png",
+        "name": "Picciu",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "17",
+        "img": "../assets/foto/utente.png",
+        "name": "Negro",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "18",
+        "img": "../assets/foto/utente.png",
+        "name": "Filippino",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "19",
+        "img": "../assets/foto/utente.png",
+        "name": "Escremento",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "20",
+        "img": "../assets/foto/utente.png",
+        "name": "ChuckNorris",
+        "isSelected": false,
+        "isEliminated": false
+    },
+    {
+        "id": "21",
+        "img": "../assets/foto/utente.png",
+        "name": "Brozzoni",
+        "isSelected": false,
+        "isEliminated": false
+    }
+]

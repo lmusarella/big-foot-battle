@@ -1,0 +1,59 @@
+
+:host {             // host targets selector: 'home'
+    left: 0;  // takes parent height 
+    position: absolute;
+    width: 100%;     // takes parent width        
+    height: 100%;
+    background-image: url('/assets/foto/bigFootBattle.jpg');
+    background-repeat: no-repeat; 
+    background-size: cover;
+.container_wrapper {
+    width: 100%;
+    height: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 20%;
+    position: fixed;
+    .wrapper {
+        width: 100%;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(10, 100px);
+        grid-template-rows: 100px 100px 100px;
+        grid-auto-flow: row;
+        .box {
+            height: 100px;
+            width: 100px;
+            padding-left: 3%;
+            padding-top: 50%;
+            font-size: 100%;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif
+          }
+      }
+      .bottoni{
+        width: 100%;
+        height: 10%;
+        padding-left: 40%;
+        padding-right: 40%;
+        display: inline-block;
+        .duel-button{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            float: left;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background: rgb(28, 184, 65); 
+        }
+    }
+    }
+}
+
+
+
+
+
+
+
