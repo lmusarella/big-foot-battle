@@ -24,15 +24,15 @@ export class BattleFieldComponent implements OnInit {
         console.log(event.key);
         if (event.key === '1') {
             this.firstPlayer.isEliminated = false;
-            this.firstPlayer.countBattle += 1;
+            this.firstPlayer.isSelected = true;
             this.secondPlayer.isEliminated = true;
-            this.secondPlayer.countBattle += 1;
+            this.secondPlayer.isSelected = false;
             this.chooseWinner();
         } else if (event.key === '2') {
             this.firstPlayer.isEliminated = true;
-            this.firstPlayer.countBattle += 1;
+            this.firstPlayer.isSelected = false;
             this.secondPlayer.isEliminated = false;
-            this.secondPlayer.countBattle += 1;
+            this.secondPlayer.isSelected = true;
             this.chooseWinner();
         }
     }

@@ -9,15 +9,12 @@ import { Player } from '../model/player';
   styleUrls: ['./homePageViewComponent.scss']
 })
 export class HomePageViewComponent implements OnInit {
-  title = 'app';
   matchingPlayer = false;
-  firstPlayerIndex = 0;
-  secondPlayerIndex = 0;
   firstPlayer: Player = null;
   secondPlayer: Player = null;
-  interval = 500;
+  interval = 0;
   isAble = true;
-  countBattle = 0;
+  countBattle = 1;
   defaultBorder = '3px' + ' solid ' + '#000000';
   greenBorder = '3px' + ' solid ' + '#00FF00';
   redBorder = '3px' + ' solid ' + '#FF0000';
@@ -43,33 +40,34 @@ export class HomePageViewComponent implements OnInit {
   }
   choosePlayer() {
     this.nextBattle();
-    this.firstPlayerIndex = Math.floor(Math.random() * this.players.length);
-    this.secondPlayerIndex = Math.floor(Math.random() * this.players.length);
-    console.log('primo indice: ' + this.firstPlayerIndex, 'secondo indice: ' + this.secondPlayerIndex);
-    this.indexCheckEquals();
-    while (this.firstPlayer === null || this.firstPlayer.isEliminated || this.countBattle < this.firstPlayer.countBattle) {
+    let range = this.players.length;
+    let firstPlayerIndex = Math.floor(Math.random() * range);
+    let secondPlayerIndex = Math.floor(Math.random() * range);
+    while (firstPlayerIndex === secondPlayerIndex) {
+      secondPlayerIndex = Math.floor(Math.random() * range);
+    }
+    console.log('primo indice: ' + firstPlayerIndex, 'secondo indice: ' + secondPlayerIndex);
+    while (this.firstPlayer === null || this.firstPlayer.isEliminated || this.firstPlayer.isSelected) {
       this.players.forEach((element, index) => {
-        if (index === this.firstPlayerIndex && (!element.player.isEliminated && this.countBattle >= element.player.countBattle)) {
+        if (index === firstPlayerIndex && (!element.player.isEliminated && !element.player.isSelected)) {
           console.log('primo giocatore trovato: ' + element.text);
-          element.player.isSelected = true;
           element.bord = this.redBorder;
           this.firstPlayer = element.player;
-        } else if (index === this.firstPlayerIndex && (element.player.isEliminated || this.countBattle < element.player.countBattle)) {
-          this.firstPlayerIndex = Math.floor(Math.random() * this.players.length);
-          this.indexCheckEquals();
+        } else if (index === firstPlayerIndex && (element.player.isEliminated || element.player.isSelected)) {
+          do { firstPlayerIndex = Math.floor(Math.random() * range); }
+          while (firstPlayerIndex === secondPlayerIndex);
         }
       });
     }
-    while (this.secondPlayer === null || this.secondPlayer.isEliminated || this.countBattle < this.secondPlayer.countBattle) {
+    while (this.secondPlayer === null || this.secondPlayer.isEliminated || this.secondPlayer.isSelected) {
       this.players.forEach((element, index) => {
-        if (index === this.secondPlayerIndex && (!element.player.isEliminated && this.countBattle >= element.player.countBattle)) {
+        if (index === secondPlayerIndex && (!element.player.isEliminated && !element.player.isSelected)) {
           console.log('secondo giocatore trovato: ' + element.text);
-          element.player.isSelected = true;
           element.bord = this.blueBorder;
           this.secondPlayer = element.player;
-        } else if (index === this.secondPlayerIndex && (element.player.isEliminated || this.countBattle < element.player.countBattle)) {
-          this.secondPlayerIndex = Math.floor(Math.random() * this.players.length);
-          this.indexCheckEquals();
+        } else if (index === secondPlayerIndex && (element.player.isEliminated || element.player.isSelected)) {
+          do { secondPlayerIndex = Math.floor(Math.random() * range); }
+          while (secondPlayerIndex === firstPlayerIndex);
         }
       });
     }
@@ -77,13 +75,25 @@ export class HomePageViewComponent implements OnInit {
 
   nextBattle() {
     let eliminatedPlayerCount = 0;
+    let winnerPlayerCount = 0;
+    let range = this.players.length;
+    let twoPow = Math.pow(2, this.countBattle);
     this.players.forEach(element => {
       if (element.player.isEliminated) {
         eliminatedPlayerCount += 1;
+      } else if (element.player.isSelected) {
+         winnerPlayerCount += 1;
       }
     });
-    if (eliminatedPlayerCount === this.players.length / 2) {
-      this.countBattle += 1;
+    if ((range / twoPow) === eliminatedPlayerCount && (range / twoPow) === winnerPlayerCount) {
+        this.countBattle += 1;
+        console.log('Secondo round sta per iniziare... ');
+        this.players.forEach(element => {
+          if (element.player.isSelected) {
+            element.player.isSelected = false;
+            element.bord = this.defaultBorder;
+          }
+        });
     }
   }
 
@@ -93,19 +103,19 @@ export class HomePageViewComponent implements OnInit {
     let indexRandom = Math.floor(Math.random() * this.players.length);
     let indexRandom2 = Math.floor(Math.random() * this.players.length);
     let gridItemPlayer1 = this.players[indexRandom];
-    gridItemPlayer1.bord = (gridItemPlayer1.player.countBattle > this.countBattle || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : this.redBorder;
+    gridItemPlayer1.bord = (gridItemPlayer1.player.isSelected || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : this.redBorder;
     let gridItemPlayer2 = this.players[indexRandom2];
-    gridItemPlayer2.bord = (gridItemPlayer2.player.countBattle > this.countBattle || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : this.blueBorder;
+    gridItemPlayer2.bord = (gridItemPlayer2.player.isSelected || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : this.blueBorder;
     if (this.interval <= -1000) {
-      gridItemPlayer1.bord = (gridItemPlayer1.player.countBattle > this.countBattle || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : this.defaultBorder;
-      gridItemPlayer2.bord = (gridItemPlayer2.player.countBattle > this.countBattle || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : this.defaultBorder;
-      this.interval = 500;
+      gridItemPlayer1.bord = (gridItemPlayer1.player.isSelected || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : this.defaultBorder;
+      gridItemPlayer2.bord = (gridItemPlayer2.player.isSelected || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : this.defaultBorder;
+      this.interval = 0;
       callBack();
       return;
     }
     setTimeout(function () {
-      gridItemPlayer1.bord = (gridItemPlayer1.player.countBattle > self.countBattle || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : self.defaultBorder;
-      gridItemPlayer2.bord = (gridItemPlayer2.player.countBattle > self.countBattle || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : self.defaultBorder;
+      gridItemPlayer1.bord = (gridItemPlayer1.player.isSelected || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : self.defaultBorder;
+      gridItemPlayer2.bord = (gridItemPlayer2.player.isSelected || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : self.defaultBorder;
       self.searchingTarget(callBack);
     }, this.interval);
   }
@@ -116,10 +126,7 @@ export class HomePageViewComponent implements OnInit {
       if (result) {
         result.forEach(element => {
           let gridItem = new GridItem();
-          element.countBattle = 0;
           gridItem.player = element;
-          gridItem.cols = '1';
-          gridItem.rows = '1';
           gridItem.border = '10px';
           gridItem.repeat = 'no-repeat';
           gridItem.image = element.img;
@@ -134,22 +141,14 @@ export class HomePageViewComponent implements OnInit {
     });
   }
 
-  indexCheckEquals() {
-    if (this.secondPlayerIndex === this.firstPlayerIndex) {
-      while (this.secondPlayerIndex === this.firstPlayerIndex) {
-        this.secondPlayerIndex = Math.floor(Math.random() * this.players.length);
-      }
-    }
-  }
-
   setWinner(event: Player) {
     this.firstPlayer = null;
     this.secondPlayer = null;
     this.players.forEach(element => {
       if (element.player.id === event.id) {
-        element.player.isSelected = false;
-        element.bord = this.greenBorder;
-        if (element.player.isEliminated) {
+        if (element.player.isSelected) {
+          element.bord = this.greenBorder;
+        } else if (element.player.isEliminated) {
           element.image = './assets/foto/X.png';
           element.bord = this.redBorder;
         }
