@@ -44,7 +44,6 @@ export class HomePageViewComponent implements OnInit {
     this.matchingPlayer = event;
   }
   choosePlayer() {
-    this.nextBattle();
     let range = this.players.length;
     let firstPlayerIndex = Math.floor(Math.random() * range);
     let secondPlayerIndex = Math.floor(Math.random() * range);
@@ -79,18 +78,22 @@ export class HomePageViewComponent implements OnInit {
   }
 
   nextBattle() {
+    let deltaEliminated = 0;
     let eliminatedPlayerCount = 0;
     let winnerPlayerCount = 0;
     let range = this.players.length;
     let twoPow = Math.pow(2, this.countBattle);
     this.players.forEach(element => {
       if (element.player.isEliminated) {
+        if (element.player.permanentEliminated && this.countBattle > 1) {
+          deltaEliminated += 1;
+        }
         eliminatedPlayerCount += 1;
       } else if (element.player.isSelected) {
         winnerPlayerCount += 1;
       }
     });
-    if ((range / twoPow) === eliminatedPlayerCount && (range / twoPow) === winnerPlayerCount) {
+    if ((range / twoPow) === (eliminatedPlayerCount - deltaEliminated) && (range / twoPow) === winnerPlayerCount) {
       this.countBattle += 1;
       console.log('Secondo round sta per iniziare... ');
       let textTransiction = null;
@@ -102,18 +105,24 @@ export class HomePageViewComponent implements OnInit {
           textTransiction = 'Fine secondo round!';
           break;
           case 3:
-          textTransiction = 'Fine terxo round!';
+          textTransiction = 'Fine terzo round!';
+          break;
+          case 4:
+          textTransiction = 'Final round!';
            break;
       }
+      this.textTransiction = textTransiction;
       this.showTransictionView(() => {
         this.transiction = false;
         this.players.forEach(element => {
           if (element.player.isSelected) {
             element.player.isSelected = false;
             element.bord = this.defaultBorder;
+          } else if (element.player.isEliminated) {
+            element.player.permanentEliminated = true;
           }
         });
-      }, textTransiction);
+      });
     }
   }
 
@@ -153,6 +162,7 @@ export class HomePageViewComponent implements OnInit {
         }
       }
     });
+    this.nextBattle();
   }
 
   resetValuePlayer(list: GridItem[]) {
@@ -164,9 +174,9 @@ export class HomePageViewComponent implements OnInit {
     }
   }
 
-  showTransictionView(callBack: Function, text: string) {
+  showTransictionView(callBack: Function) {
     this.transiction = true;
-    this.textTransiction = text;
+    this.textTransiction = this.textTransiction;
     setTimeout(() => {
       callBack();
      }, 2000);

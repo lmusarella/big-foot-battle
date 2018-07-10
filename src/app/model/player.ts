@@ -6,4 +6,5 @@ export interface Player {
     isEliminated: boolean;
     isBomber: boolean;
     countBattle: number;
+    permanentEliminated: boolean;
 }

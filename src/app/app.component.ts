@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
       if (result) {
         result.forEach(element => {
           let gridItem = new GridItem();
+          element.permanentEliminated = false;
           gridItem.player = element;
           gridItem.border = '10px';
           gridItem.repeat = 'no-repeat';
