@@ -1,0 +1,86 @@
+.modal-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    -webkit-animation: background-animation 2s forwards;
+     animation: background-animation 2s forwards;
+     .player-view {
+       padding: 20px;
+       height: 50%;
+       width: 100%;
+       .animazione {
+         width: 300px;
+         height: 100%;
+         position: relative;
+         -webkit-animation: mymove 5s forwards; /* Safari 4.0 - 8.0 */
+         animation: mymove 5s forwards;
+       }
+       .animazione2 {
+         width: 300px;
+         height: 100%;
+         float: right;
+         position: relative;
+         -webkit-animation: mymoveright 5s forwards; /* Safari 4.0 - 8.0 */
+         animation: mymoveright 5s forwards;
+       }
+       .winnerButton{
+         width: 50px;
+         height: 20px;
+       }
+     }
+   }
+   
+   
+   //first player animation
+   @-webkit-keyframes mymove {
+     from {left: 0px;}
+     to {left: 1000px;}
+   }
+   
+   @keyframes mymove {
+     from {left: 0px;}
+     to {left: 1000px;}
+   }
+   //second player animation
+   @-webkit-keyframes mymoveright {
+     from {left: 0px}
+     to {left: -1000px}
+   }
+   
+   @keyframes mymoveright {
+     from {left: 0px}
+     to {left: -1000px}
+   }
+   //background animation
+   @-webkit-keyframes background-animation {
+     0%   {background-color: rgba($color: #000000, $alpha: 0.1)}
+     13%  {background-color: rgba($color: #000000, $alpha: 0.2)}
+     25%  {background-color: rgba($color: #000000, $alpha: 0.3)}
+     37%  {background-color: rgba($color: #000000, $alpha: 0.4)}
+     50%  {background-color: rgba($color: #000000, $alpha: 0.5)}
+     60%  {background-color: rgba($color: #000000, $alpha: 0.6)}
+     70% {background-color: rgba($color: #000000, $alpha: 0.7)}
+      80% {background-color: rgba($color: #000000, $alpha: 0.8)}
+     90% {background-color: rgba($color: #000000, $alpha: 0.8)}
+     100% {background-color: rgba($color: #000000, $alpha: 0.8)}
+   }
+   
+   /* Standard syntax */
+   @keyframes background-animation {
+     0%   {background-color: rgba($color: #000000, $alpha: 0.1)}
+     13%  {background-color: rgba($color: #000000, $alpha: 0.2)}
+     25%  {background-color: rgba($color: #000000, $alpha: 0.3)}
+     37%  {background-color: rgba($color: #000000, $alpha: 0.4)}
+     50%  {background-color: rgba($color: #000000, $alpha: 0.5)}
+     60%  {background-color: rgba($color: #000000, $alpha: 0.6)}
+     70% {background-color: rgba($color: #000000, $alpha: 0.7)}
+     80% {background-color: rgba($color: #000000, $alpha: 0.8)}
+     90% {background-color: rgba($color: #000000, $alpha: 0.8)}
+     100% {background-color: rgba($color: #000000, $alpha: 0.8)}
+   }
+   
+   :host {             
+     display: block;
+     left: 0;  
+   }

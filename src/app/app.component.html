@@ -1,1 +1,2 @@
-<app-home-page-component></app-home-page-component>
+<app-home-page-component *ngIf="!selection" [listTopPlayers]="listTopPlayers"></app-home-page-component>
+<app-selection-component *ngIf="selection"  [playersInput]="playersInput" (listTopPlayersOutPut)="setTopPlayersList($event)" (closeSelectionView)="closeSection($event)"></app-selection-component>

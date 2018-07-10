@@ -1,22 +1,18 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Player } from '../model/player';
+import { Player } from '../../model/player';
 import { HostListener } from '@angular/core';
 @Component({
-    selector: 'app-battle-field-view',
-    templateUrl: './battleFieldView.html',
-    styleUrls: ['./battleFieldView.scss']
+    selector: 'app-single-battle-field-view',
+    templateUrl: './singleBattleViewComponent.html',
+    styleUrls: ['./singleBattleViewComponent.scss']
 })
-export class BattleFieldComponent implements OnInit {
+export class SingleBattleComponent implements OnInit {
     @Input()
     firstPlayer: Player;
     @Input()
-    secondPlayer: Player;
-    @Input()
-    matchingPlayer: boolean;
+    singlePlayerMatch: boolean;
     @Output()
     firstPlayerOutput = new EventEmitter<Player>();
-    @Output()
-    sedondPlayerOutPut = new EventEmitter<Player>();
     @Output()
     closeView = new EventEmitter<boolean>();
     @HostListener('document:keypress', ['$event'])
@@ -25,14 +21,10 @@ export class BattleFieldComponent implements OnInit {
         if (event.key === '1') {
             this.firstPlayer.isEliminated = false;
             this.firstPlayer.isSelected = true;
-            this.secondPlayer.isEliminated = true;
-            this.secondPlayer.isSelected = false;
             this.chooseWinner();
         } else if (event.key === '2') {
             this.firstPlayer.isEliminated = true;
             this.firstPlayer.isSelected = false;
-            this.secondPlayer.isEliminated = false;
-            this.secondPlayer.isSelected = true;
             this.chooseWinner();
         }
     }
@@ -41,11 +33,13 @@ export class BattleFieldComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (this.firstPlayer === null) {
+            alert('inizio secondo round!');
+        }
     }
 
     chooseWinner() {
         this.firstPlayerOutput.emit(this.firstPlayer);
-        this.sedondPlayerOutPut.emit(this.secondPlayer);
         this.closeView.emit(false);
     }
 }

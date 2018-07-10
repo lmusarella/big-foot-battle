@@ -10,5 +10,6 @@ export class GridItem {
     image: string;
     player: Player;
     bord: string;
+    secImg: string;
     boxShadow: string;
 }

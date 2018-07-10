@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { GenericService } from '../service/genericService';
-import { GridItem } from '../model/gridItem';
-import { Player } from '../model/player';
+import { Component, OnInit, Input } from '@angular/core';
+import { GridItem } from '../../model/gridItem';
+import { Player } from '../../model/player';
 
 @Component({
   selector: 'app-home-page-component',
@@ -9,21 +8,25 @@ import { Player } from '../model/player';
   styleUrls: ['./homePageViewComponent.scss']
 })
 export class HomePageViewComponent implements OnInit {
+  @Input()
+  listTopPlayers: GridItem[];
+
   matchingPlayer = false;
   firstPlayer: Player = null;
   secondPlayer: Player = null;
   interval = 0;
   isAble = true;
+  players: GridItem[] = [];
   countBattle = 1;
   defaultBorder = '3px' + ' solid ' + '#000000';
   greenBorder = '3px' + ' solid ' + '#00FF00';
   redBorder = '3px' + ' solid ' + '#FF0000';
   blueBorder = '3px' + ' solid ' + '#0000FF';
-  players: GridItem[] = [];
-  constructor(private genericService: GenericService) {
+  constructor() {
   }
   ngOnInit() {
-    this.gridInitialize();
+    this.players = this.listTopPlayers;
+    this.resetValuePlayer(this.players);
   }
   showModal() {
     this.isAble = false;
@@ -82,29 +85,29 @@ export class HomePageViewComponent implements OnInit {
       if (element.player.isEliminated) {
         eliminatedPlayerCount += 1;
       } else if (element.player.isSelected) {
-         winnerPlayerCount += 1;
+        winnerPlayerCount += 1;
       }
     });
     if ((range / twoPow) === eliminatedPlayerCount && (range / twoPow) === winnerPlayerCount) {
-        this.countBattle += 1;
-        console.log('Secondo round sta per iniziare... ');
-        this.players.forEach(element => {
-          if (element.player.isSelected) {
-            element.player.isSelected = false;
-            element.bord = this.defaultBorder;
-          }
-        });
+      this.countBattle += 1;
+      console.log('Secondo round sta per iniziare... ');
+      this.players.forEach(element => {
+        if (element.player.isSelected) {
+          element.player.isSelected = false;
+          element.bord = this.defaultBorder;
+        }
+      });
     }
   }
 
   searchingTarget(callBack: Function) {
     this.interval -= 20;
     let self = this;
-    let indexRandom = Math.floor(Math.random() * this.players.length);
-    let indexRandom2 = Math.floor(Math.random() * this.players.length);
-    let gridItemPlayer1 = this.players[indexRandom];
+    let indexRandom = Math.floor(Math.random() * this.listTopPlayers.length);
+    let indexRandom2 = Math.floor(Math.random() * this.listTopPlayers.length);
+    let gridItemPlayer1 = this.listTopPlayers[indexRandom];
     gridItemPlayer1.bord = (gridItemPlayer1.player.isSelected || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : this.redBorder;
-    let gridItemPlayer2 = this.players[indexRandom2];
+    let gridItemPlayer2 = this.listTopPlayers[indexRandom2];
     gridItemPlayer2.bord = (gridItemPlayer2.player.isSelected || gridItemPlayer2.player.isEliminated) ? gridItemPlayer2.bord : this.blueBorder;
     if (this.interval <= -1000) {
       gridItemPlayer1.bord = (gridItemPlayer1.player.isSelected || gridItemPlayer1.player.isEliminated) ? gridItemPlayer1.bord : this.defaultBorder;
@@ -120,31 +123,10 @@ export class HomePageViewComponent implements OnInit {
     }, this.interval);
   }
 
-  gridInitialize() {
-    let self = this;
-    this.genericService.getData().subscribe((result) => {
-      if (result) {
-        result.forEach(element => {
-          let gridItem = new GridItem();
-          gridItem.player = element;
-          gridItem.border = '10px';
-          gridItem.repeat = 'no-repeat';
-          gridItem.image = element.img;
-          gridItem.size = 'cover';
-          gridItem.boxShadow = '2px' + ' 2px';
-          gridItem.text = element.name;
-          gridItem.id = element.id;
-          gridItem.bord = this.defaultBorder;
-          self.players.push(gridItem);
-        });
-      }
-    });
-  }
-
   setWinner(event: Player) {
     this.firstPlayer = null;
     this.secondPlayer = null;
-    this.players.forEach(element => {
+    this.listTopPlayers.forEach(element => {
       if (element.player.id === event.id) {
         if (element.player.isSelected) {
           element.bord = this.greenBorder;
@@ -154,6 +136,15 @@ export class HomePageViewComponent implements OnInit {
         }
       }
     });
+  }
+
+  resetValuePlayer(list: GridItem[]) {
+    if (list !== null) {
+      list.forEach(element => {
+        element.bord = this.defaultBorder;
+        element.player.isSelected = false;
+      });
+    }
   }
 }
 

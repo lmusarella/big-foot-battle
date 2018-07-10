@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-single-battle-field-view (firstPlayerOutput)="setWinner($event)" (closeView)="closeView($event)" [firstPlayer]="firstPlayer" [singlePlayerMatch]="singlePlayerMatch" *ngIf="singlePlayerMatch && !transiction"></app-single-battle-field-view>
+<app-transiction-view *ngIf="transiction" [transiction]="transiction" [text]="textTransiction"></app-transiction-view>
+<div class="container_wrapper" *ngIf="!singlePlayerMatch && !transiction">
+    <div class="wrapper">
+        <div class="box" *ngFor="let player of players"  [style.border-radius]="player.border" [style.background-image]="'url(' + player.image + ')'" [style.background-repeat]="player.repeat"
+        [style.background-size]="player.size"
+        [style.border]="player.bord" [style.box-shadow]="player.boxShadow"><div *ngIf="player.secImg" [style.background-size]="player.size" [style.background-image]="'url(' + player.secImg + ')'" [style.background-repeat]="player.repeat" class="secondImg"><span>{{player.text}}</span></div></div>
+    </div>
+    <div class="bottoni">
+        <button [disabled]="!isAble" [style.background]=" !isAble ? 'rgb(202, 60, 60)' : 'rgb(28, 184, 65)'" *ngIf="!matchingPlayer" class="duel-button" (click)="showModal()">Avvia Selezione</button>
+    </div>
+</div>
+
+
+

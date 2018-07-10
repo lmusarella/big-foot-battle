@@ -15,50 +15,50 @@
     },
     {
         "id": "2",
-        "img": "../assets/foto/utente.png",
+        "img": "../assets/foto/freestyler/wip.jpg",
         "name": "Rocco",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "3",
-        "img": "../assets/foto/utente.png",
+        "img": "../assets/foto/freestyler/weeda.jpg",
         "name": "Toninu",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "4",
-        "img": "../assets/foto/utente.png",
-        "name": "Gesu",
+        "img": "../assets/foto/freestyler/tuono.jpg",
+        "name": "Tnni",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "5",
-        "img": "../assets/foto/utente.png",
-        "name": "Dio cane",
+        "img": "../assets/foto/freestyler/stone.jpg",
+        "name": "Tonno",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "6",
-        "img": "../assets/foto/utente.png",
-        "name": "Madonna laiada",
+        "img": "../assets/foto/freestyler/snake.jpg",
+        "name": "Sugo",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "7",
-        "img": "../assets/foto/utente.png",
-        "name": "La mia Sofia",
+        "img": "../assets/foto/freestyler/guldo.jpg",
+        "name": "Sofia",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "8",
         "img": "../assets/foto/utente.png",
-        "name": "Abramo Prete",
+        "name": "Abramo",
         "isSelected": false,
         "isEliminated": false
     },
@@ -79,7 +79,7 @@
     {
         "id": "11",
         "img": "../assets/foto/utente.png",
-        "name": "Rumeno",
+        "name": "giulio",
         "isSelected": false,
         "isEliminated": false
     },
@@ -121,7 +121,7 @@
     {
         "id": "17",
         "img": "../assets/foto/utente.png",
-        "name": "Negro",
+        "name": "topo",
         "isSelected": false,
         "isEliminated": false
     },

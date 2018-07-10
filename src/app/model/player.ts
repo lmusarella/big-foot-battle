@@ -4,5 +4,6 @@ export interface Player {
     name: string;
     isSelected: boolean;
     isEliminated: boolean;
+    isBomber: boolean;
     countBattle: number;
 }
