@@ -97,7 +97,7 @@ export class SelectionViewComponent implements OnInit {
         }
       }
     });
-    if (this.listTopPlayers.length === 4) {
+    if (this.listTopPlayers.length === 16) {
       this.showTransictionView(() => {
           this.transiction = false;
           this.listTopPlayersOutPut.emit(this.listTopPlayers);
@@ -111,7 +111,7 @@ export class SelectionViewComponent implements OnInit {
     this.textTransiction = 'Selezione conclusa... Inizio Battle';
     setTimeout(() => {
       callBack();
-     }, 300000);
+     }, 2000);
   }
 
   closeTransictionView(event) {

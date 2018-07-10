@@ -16,6 +16,8 @@ export class HomePageViewComponent implements OnInit {
   secondPlayer: Player = null;
   interval = 0;
   isAble = true;
+  textTransiction: string = null;
+  transiction = false;
   players: GridItem[] = [];
   countBattle = 1;
   defaultBorder = '3px' + ' solid ' + '#000000';
@@ -91,12 +93,27 @@ export class HomePageViewComponent implements OnInit {
     if ((range / twoPow) === eliminatedPlayerCount && (range / twoPow) === winnerPlayerCount) {
       this.countBattle += 1;
       console.log('Secondo round sta per iniziare... ');
-      this.players.forEach(element => {
-        if (element.player.isSelected) {
-          element.player.isSelected = false;
-          element.bord = this.defaultBorder;
-        }
-      });
+      let textTransiction = null;
+      switch (this.countBattle) {
+          case 1:
+          textTransiction = 'Fine primo round!';
+          break;
+          case 2:
+          textTransiction = 'Fine secondo round!';
+          break;
+          case 3:
+          textTransiction = 'Fine terxo round!';
+           break;
+      }
+      this.showTransictionView(() => {
+        this.transiction = false;
+        this.players.forEach(element => {
+          if (element.player.isSelected) {
+            element.player.isSelected = false;
+            element.bord = this.defaultBorder;
+          }
+        });
+      }, textTransiction);
     }
   }
 
@@ -145,6 +162,18 @@ export class HomePageViewComponent implements OnInit {
         element.player.isSelected = false;
       });
     }
+  }
+
+  showTransictionView(callBack: Function, text: string) {
+    this.transiction = true;
+    this.textTransiction = text;
+    setTimeout(() => {
+      callBack();
+     }, 2000);
+  }
+
+  closeTransictionView(event) {
+    this.transiction = event;
   }
 }
 
