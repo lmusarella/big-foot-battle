@@ -31,11 +31,13 @@ export class HomePageViewComponent implements OnInit {
     this.players = this.listTopPlayers;
     this.resetValuePlayer(this.players);
   }
+
   clickButton() {
-    if (this.countBattle === 1 && this.isFirstLogin) {
+    if (this.isFirstLogin) {
       this.isFirstLogin = false;
       this.textTransiction = 'INIZIO OTTAVI';
       this.showTransictionView(() => {
+        this.transiction = false;
         this.showModal();
       });
     } else {
@@ -110,17 +112,14 @@ export class HomePageViewComponent implements OnInit {
       console.log('Secondo round sta per iniziare... ');
       let textTransiction = null;
       switch (this.countBattle) {
-          case 1:
-          textTransiction = 'Fine primo round!';
-          break;
           case 2:
-          textTransiction = 'Fine secondo round!';
+          textTransiction = 'INIZIO QUARTI';
           break;
           case 3:
-          textTransiction = 'Fine terzo round!';
+          textTransiction = 'SEMIFINALE';
           break;
           case 4:
-          textTransiction = 'Final round!';
+          textTransiction = 'FINALE';
            break;
       }
       this.textTransiction = textTransiction;
@@ -191,7 +190,7 @@ export class HomePageViewComponent implements OnInit {
     this.textTransiction = this.textTransiction;
     setTimeout(() => {
       callBack();
-     }, 4000);
+     }, 3000);
   }
 
   closeTransictionView(event) {

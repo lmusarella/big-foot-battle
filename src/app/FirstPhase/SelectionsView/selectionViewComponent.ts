@@ -97,7 +97,7 @@ export class SelectionViewComponent implements OnInit {
         }
       }
     });
-    if (this.listTopPlayers.length === 16) {
+    if (this.listTopPlayers.length === 2) {
       this.showTransictionView(() => {
           this.transiction = false;
           this.listTopPlayersOutPut.emit(this.listTopPlayers);

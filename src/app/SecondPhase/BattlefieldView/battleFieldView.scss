@@ -1,7 +1,7 @@
 .modal-container {
  width: 100%;
  height: 100%;
- position: absolute;
+ position: fixed;
  background-color: rgba($color: #000000, $alpha: 0.5);
  -webkit-animation: background-animation 2s forwards;
   animation: background-animation 2s forwards;
@@ -13,25 +13,85 @@
       width: 280px;
       height: 280px;
       border-radius: 10px;
+      float: left;
       position: relative;
       -webkit-animation: mymove 5s forwards; /* Safari 4.0 - 8.0 */
       animation: mymove 5s forwards;
+     
     }
     .animazione2 {
-      width: 300px;
-      height: 100%;
+      width: 280px;
+      height: 280px;
       float: right;
+      border-radius: 10px;
       position: relative;
       -webkit-animation: mymoveright 5s forwards; /* Safari 4.0 - 8.0 */
-      animation: mymoveright 5s forwards;
+      animation: mymoveright 5s forwards;  
     }
-    .winnerButton{
-      width: 50px;
-      height: 20px;
-    }
+      .conteinerAnimation {
+       .textAnimation {
+         text-align:center;
+         color:#FFF;
+         font-family:'Roboto';
+         font-weight:340;
+         font-size:50px;
+         padding-top:10vh;
+         overflow:hidden;
+         -webkit-backface-visibility: hidden;
+         -webkit-perspective: 1000;
+         -webkit-transform: translate3d(0,0,0);
+         div {
+           display:inline-block;
+           overflow:hidden;
+           white-space:nowrap;
+         }
+         
+         div:first-of-type {   
+           animation: showup 7s forwards;
+         }
+         
+         div:last-of-type {
+           width:0px;
+           animation: reveal 7s forwards;
+         }
+         
+         div:last-of-type span {
+           margin-left:-355px;
+           text-transform: uppercase;
+           animation: slidein 7s forwards;
+         }
+         p {
+           font-size:12px;
+           color:#999;
+           margin-top:200px;
+         }
+       }
+     }
+    
   }
 }
+ 
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:1;}
+  80% {opacity:1;}
+  100% {opacity:1;}
+}
 
+@keyframes slidein {
+  0% { margin-left:-800px; }
+  20% { margin-left:-800px; }
+  35% { margin-left:0px; }
+  100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+  0% {opacity:0;width:0px;}
+  20% {opacity:1;width:0px;}
+  30% {width:355px;}
+  80% {opacity:1;}
+  100% {opacity:1;width:355px;}
+}
 
 //first player animation
 @-webkit-keyframes mymove {
@@ -84,4 +144,79 @@
 :host {             
   display: block;
   left: 0;  
+}
+
+$anime-time: 8s;
+
+$box-size: 280px;
+$clip-distance: .05;
+$clip-size: $box-size * (1 + $clip-distance * 2);
+$path-width: 2px;
+
+$main-color: #69ca62;
+
+%full-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bb {
+  @extend %full-fill;
+  width: $box-size;
+  height: $box-size;
+  margin: auto;
+  background: no-repeat 50% / 70% rgba(#000, .1);
+  color: $main-color;
+  box-shadow: inset 0 0 0 1px rgba($main-color, .5);
+
+  &::before,
+  &::after {
+    @extend %full-fill;
+    content: '';
+    z-index: -1;
+    margin: -1 * $clip-distance * 100%;
+    box-shadow: inset 0 0 0 $path-width; 
+    animation: clipMe $anime-time linear infinite;
+  }
+
+  &::before {
+    animation-delay: $anime-time * -.5;
+  }
+
+  // for debug
+  &:hover {
+    &::after,
+    &::before {
+      background-color: rgba(#f00, .3);
+    }
+  }
+
+}
+
+@keyframes clipMe {
+  0%, 100% {clip: rect(0px, $clip-size, $path-width, 0px); }
+  25% {clip: rect(0px, $path-width, $clip-size, 0px); }
+  50% {clip: rect($clip-size - $path-width, $clip-size, $clip-size, 0px); }
+  75% {clip: rect(0px, $clip-size, $clip-size, $clip-size - $path-width); }
+}
+
+/////
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background-color: #0f222b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
