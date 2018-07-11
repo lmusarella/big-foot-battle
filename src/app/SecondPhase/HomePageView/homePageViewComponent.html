@@ -8,7 +8,7 @@
         [style.border]="player.bord" [style.box-shadow]="player.boxShadow"><div *ngIf="player.secImg" [style.background-size]="player.size" [style.background-image]="'url(' + player.secImg + ')'" [style.background-repeat]="player.repeat" class="secondImg"></div></div>
     </div>
     <div class="bottoni">
-        <button [disabled]="!isAble" [style.background]=" !isAble ? 'rgb(202, 60, 60)' : 'rgb(28, 184, 65)'" *ngIf="!matchingPlayer" class="duel-button" (click)="showModal()">Avvia Duello</button>
+        <button [disabled]="!isAble" [style.background]=" !isAble ? 'rgb(202, 60, 60)' : 'rgb(28, 184, 65)'" *ngIf="!matchingPlayer" class="duel-button" (click)="clickButton()">Avvia Duello</button>
     </div>
 </div>
 

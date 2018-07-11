@@ -108,10 +108,10 @@ export class SelectionViewComponent implements OnInit {
 
   showTransictionView(callBack: Function) {
     this.transiction = true;
-    this.textTransiction = 'Selezione conclusa... Inizio Battle';
+    this.textTransiction = 'FINE SELEZIONI';
     setTimeout(() => {
       callBack();
-     }, 2000);
+     }, 4000);
   }
 
   closeTransictionView(event) {

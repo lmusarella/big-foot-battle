@@ -16,6 +16,7 @@ export class HomePageViewComponent implements OnInit {
   secondPlayer: Player = null;
   interval = 0;
   isAble = true;
+  isFirstLogin = true;
   textTransiction: string = null;
   transiction = false;
   players: GridItem[] = [];
@@ -29,6 +30,17 @@ export class HomePageViewComponent implements OnInit {
   ngOnInit() {
     this.players = this.listTopPlayers;
     this.resetValuePlayer(this.players);
+  }
+  clickButton() {
+    if (this.countBattle === 1 && this.isFirstLogin) {
+      this.isFirstLogin = false;
+      this.textTransiction = 'INIZIO OTTAVI';
+      this.showTransictionView(() => {
+        this.showModal();
+      });
+    } else {
+      this.showModal();
+    }
   }
   showModal() {
     this.isAble = false;
@@ -179,7 +191,7 @@ export class HomePageViewComponent implements OnInit {
     this.textTransiction = this.textTransiction;
     setTimeout(() => {
       callBack();
-     }, 2000);
+     }, 4000);
   }
 
   closeTransictionView(event) {
