@@ -16,6 +16,8 @@
     position: fixed;
     .wrapper {
         width: 100%;
+        padding-left: 12%;
+        padding-right: 12%;
         display: grid;
         grid-gap: 5px;
         grid-template-columns: repeat(8, 100px);
@@ -24,11 +26,15 @@
         .box {
             height: 100px;
             width: 100px;
-            padding-left: 3%;
-            padding-top: 50%;
+            padding: 2px;
             font-size: 100%;
             text-align: center;
-            font-family: Arial, Helvetica, sans-serif
+            font-family: Arial, Helvetica, sans-serif;
+            .secondImg{
+                padding-top: 50%;
+                height: 100%;
+                width: 100%;
+            }
           }
       }
       .bottoni{

@@ -157,7 +157,7 @@ export class HomePageViewComponent implements OnInit {
         if (element.player.isSelected) {
           element.bord = this.greenBorder;
         } else if (element.player.isEliminated) {
-          element.image = './assets/foto/X.png';
+          element.secImg = './assets/foto/X.png';
           element.bord = this.redBorder;
         }
       }
