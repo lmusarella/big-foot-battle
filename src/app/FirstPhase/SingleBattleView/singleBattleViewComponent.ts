@@ -22,10 +22,6 @@ export class SingleBattleComponent implements OnInit {
             this.firstPlayer.isEliminated = false;
             this.firstPlayer.isSelected = true;
             this.chooseWinner();
-        } else if (event.key === '2') {
-            this.firstPlayer.isEliminated = true;
-            this.firstPlayer.isSelected = false;
-            this.chooseWinner();
         }
     }
 
@@ -33,9 +29,6 @@ export class SingleBattleComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.firstPlayer === null) {
-            alert('inizio secondo round!');
-        }
     }
 
     chooseWinner() {

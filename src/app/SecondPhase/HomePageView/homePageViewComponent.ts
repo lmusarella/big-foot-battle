@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { GridItem } from '../../model/gridItem';
 import { Player } from '../../model/player';
 
@@ -12,8 +12,11 @@ export class HomePageViewComponent implements OnInit {
   listTopPlayers: GridItem[];
 
   matchingPlayer = false;
+  showMenu = false;
   firstPlayer: Player = null;
   secondPlayer: Player = null;
+  oldFirstPlayer: Player = null;
+  oldSecondPlayer: Player = null;
   interval = 0;
   isAble = true;
   isFirstLogin = true;
@@ -25,6 +28,13 @@ export class HomePageViewComponent implements OnInit {
   greenBorder = '3px' + ' solid ' + '#00FF00';
   redBorder = '3px' + ' solid ' + '#FF0000';
   blueBorder = '3px' + ' solid ' + '#0000FF';
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+      console.log(event.key);
+      if (event.key === 'm') {
+          this.showMenu = !this.showMenu;
+      }
+  }
   constructor() {
   }
   ngOnInit() {
@@ -40,6 +50,14 @@ export class HomePageViewComponent implements OnInit {
         this.transiction = false;
         this.showModal();
       });
+    } else if (this.countBattle === 6) {
+      this.textTransiction = 'VINCE LA BATTLE: ';
+      this.showTransictionView(() => {
+        this.transiction = false;
+      });
+    } else if (this.countBattle === 5) {
+      this.countBattle += 1;
+      this.showModal();
     } else {
       this.showModal();
     }
@@ -77,13 +95,18 @@ export class HomePageViewComponent implements OnInit {
         }
       });
     }
-    while (this.secondPlayer === null || this.secondPlayer.isEliminated || this.secondPlayer.isSelected) {
+    while (this.secondPlayer === null || this.secondPlayer.isEliminated || this.secondPlayer.isSelected || ((this.firstPlayer.isBomber === this.secondPlayer.isBomber) && this.countBattle === 1)) {
       this.players.forEach((element, index) => {
         if (index === secondPlayerIndex && (!element.player.isEliminated && !element.player.isSelected)) {
+          if (element.player.isBomber === this.firstPlayer.isBomber && this.countBattle === 1) {
+            do { secondPlayerIndex = Math.floor(Math.random() * range); }
+            while (secondPlayerIndex === firstPlayerIndex);
+          } else  {
           console.log('secondo giocatore trovato: ' + element.text);
           element.bord = this.blueBorder;
           this.secondPlayer = element.player;
-        } else if (index === secondPlayerIndex && (element.player.isEliminated || element.player.isSelected)) {
+          }
+        } else if (index === secondPlayerIndex && (element.player.isEliminated || element.player.isSelected || ((element.player.isBomber === this.firstPlayer.isBomber && this.countBattle === 1)))) {
           do { secondPlayerIndex = Math.floor(Math.random() * range); }
           while (secondPlayerIndex === firstPlayerIndex);
         }
@@ -121,6 +144,9 @@ export class HomePageViewComponent implements OnInit {
           case 4:
           textTransiction = 'FINALE';
            break;
+      }
+      if (this.countBattle === 4) {
+        this.countBattle += 1;
       }
       this.textTransiction = textTransiction;
       this.showTransictionView(() => {
@@ -176,10 +202,14 @@ export class HomePageViewComponent implements OnInit {
     this.nextBattle();
   }
 
+  changeLastBattle () {
+  }
+
   resetValuePlayer(list: GridItem[]) {
     if (list !== null) {
       list.forEach(element => {
         element.bord = this.defaultBorder;
+        element.isChecked = false;
         element.player.isSelected = false;
       });
     }
@@ -195,6 +225,9 @@ export class HomePageViewComponent implements OnInit {
 
   closeTransictionView(event) {
     this.transiction = event;
+  }
+
+  setWinners(gridPlayersWinner: GridItem[]) {
   }
 }
 

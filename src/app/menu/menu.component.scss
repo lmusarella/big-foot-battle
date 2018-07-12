@@ -1,0 +1,24 @@
+.menu_base {
+    background: gray;
+    border: black solid 1px;
+    height: 50%;
+    width: 34%;
+    padding: 5px;
+    position: fixed;
+    z-index: 10;
+    overflow-y: scroll;
+    .checkBoxes{
+        height: 100%;
+        width: 40%;
+        float: left;
+    }
+    .players_container{
+        height: 100%;
+        width: 50%;
+        float: right;
+        ol{
+            top:0;
+            float: right;
+        }
+    }
+}

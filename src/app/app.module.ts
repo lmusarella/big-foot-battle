@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectionViewComponent } from './FirstPhase/SelectionsView/selectionViewComponent';
 import { SingleBattleComponent } from './FirstPhase/SingleBattleView/singleBattleViewComponent';
 import { TransictionComponent } from './UtilityView/transictionView';
-import { MatGridList, MatGridTile } from '@angular/material';
+import { MenuComponent } from './menu/menu.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { MatGridList, MatGridTile } from '@angular/material';
     SelectionViewComponent,
     SingleBattleComponent,
     TransictionComponent,
-    MatGridList,
-    MatGridTile
+    MenuComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,

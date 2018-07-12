@@ -1,0 +1,16 @@
+<div class="menu_base">
+  <div class="checkBoxes">
+    <span *ngFor="let item of menuItem">
+        <input type="checkbox" [(ngModel)]="item.isChecked" (change)="onChangeRadioButton(item)" /> 
+        {{item.name}} <br>
+    </span>
+</div>
+  <div class="players_container">
+    <ol>
+      <li *ngFor="let gridPlayer of gridPlayers">
+        <input (change)="onChange(gridPlayer)" [(ngModel)]="gridPlayer.isChecked" type="checkbox" />
+        {{gridPlayer.player.name}}
+      </li>
+    </ol>
+  </div>
+</div>

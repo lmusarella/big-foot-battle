@@ -1,155 +1,169 @@
 [
     {
         "id": "0",
-        "img": "../assets/foto/aymen.jpg",
-        "name": "Aymen",
+        "img": "../assets/foto/freestyler/Albe.jpg",
+        "name": "Albe",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "1",
-        "img": "../assets/foto/musa.jpg",
-        "name": "Luha",
+        "img": "../assets/foto/freestyler/Baga.jpg",
+        "name": "Baga",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "2",
-        "img": "../assets/foto/freestyler/wip.jpg",
-        "name": "Rocco",
+        "img": "../assets/foto/freestyler/Baloo.jpg",
+        "name": "Baloo",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "3",
-        "img": "../assets/foto/freestyler/weeda.jpg",
-        "name": "Toninu",
+        "img": "../assets/foto/freestyler/Bons.jpg",
+        "name": "Bons",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "4",
-        "img": "../assets/foto/freestyler/tuono.jpg",
-        "name": "Tnni",
+        "img": "../assets/foto/freestyler/Clydo.jpg",
+        "name": "Clydo",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "5",
-        "img": "../assets/foto/freestyler/stone.jpg",
-        "name": "Tonno",
+        "img": "../assets/foto/freestyler/Domenik.jpg",
+        "name": "Domenik",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "6",
-        "img": "../assets/foto/freestyler/snake.jpg",
-        "name": "Sugo",
+        "img": "../assets/foto/freestyler/Drimer.jpg",
+        "name": "Drimer",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "7",
-        "img": "../assets/foto/freestyler/guldo.jpg",
-        "name": "Sofia",
+        "img": "../assets/foto/freestyler/FedeRichGoat.jpg",
+        "name": "FedeRich Goat",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "8",
-        "img": "../assets/foto/utente.png",
-        "name": "Abramo",
+        "img": "../assets/foto/freestyler/Fezimc.jpg",
+        "name": "Fezi mc",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "9",
-        "img": "../assets/foto/utente.png",
-        "name": "Vas",
+        "img": "../assets/foto/freestyler/Gizmo.jpg",
+        "name": "Gizmo",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "10",
-        "img": "../assets/foto/utente.png",
-        "name": "Carlone",
+        "img": "../assets/foto/freestyler/Isne.jpg",
+        "name": "Isne",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "11",
-        "img": "../assets/foto/utente.png",
-        "name": "giulio",
+        "img": "../assets/foto/freestyler/Jolly.jpg",
+        "name": "Jolly",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "12",
-        "img": "../assets/foto/utente.png",
-        "name": "Damiano",
+        "img": "../assets/foto/freestyler/LocoMc.jpg",
+        "name": "Loco Mc",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "13",
-        "img": "../assets/foto/utente.png",
-        "name": "Donati",
+        "img": "../assets/foto/freestyler/Lope.jpg",
+        "name": "Lope",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "14",
-        "img": "../assets/foto/utente.png",
-        "name": "Nuzzolè",
+        "img": "../assets/foto/freestyler/Polee-c.jpg",
+        "name": "Polee-c",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "15",
-        "img": "../assets/foto/utente.png",
-        "name": "Verme di terra",
+        "img": "../assets/foto/freestyler/Ramos.jpeg",
+        "name": "Ramos",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "16",
-        "img": "../assets/foto/utente.png",
-        "name": "Picciu",
+        "img": "../assets/foto/freestyler/Roger.jpg",
+        "name": "Roger",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "17",
-        "img": "../assets/foto/utente.png",
-        "name": "topo",
+        "img": "../assets/foto/freestyler/Siddartha.jpg",
+        "name": "Siddartha",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "18",
-        "img": "../assets/foto/utente.png",
-        "name": "Filippino",
+        "img": "../assets/foto/freestyler/Snake.jpg",
+        "name": "Snake",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "19",
-        "img": "../assets/foto/utente.png",
-        "name": "Escremento",
+        "img": "../assets/foto/freestyler/Stone.jpg",
+        "name": "Stone",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "20",
-        "img": "../assets/foto/utente.png",
-        "name": "ChuckNorris",
+        "img": "../assets/foto/freestyler/Tuono.jpg",
+        "name": "Tuono",
         "isSelected": false,
         "isEliminated": false
     },
     {
         "id": "21",
-        "img": "../assets/foto/utente.png",
-        "name": "Brozzoni",
+        "img": "../assets/foto/freestyler/Weeda.jpg",
+        "name": "Weeda",
+        "isSelected": false,
+        "isEliminated": false
+    }, 
+    {
+        "id": "22",
+        "img": "../assets/foto/freestyler/Guldo.jpg",
+        "name": "Guldo",
+        "isSelected": false,
+        "isEliminated": false
+    }, 
+    {
+        "id": "23",
+        "img": "../assets/foto/freestyler/Wip.jpg",
+        "name": "Wip",
         "isSelected": false,
         "isEliminated": false
     }

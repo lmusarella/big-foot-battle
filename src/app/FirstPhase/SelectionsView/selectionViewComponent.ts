@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { GridItem } from '../../model/gridItem';
 import { Player } from '../../model/player';
 
@@ -15,6 +15,7 @@ export class SelectionViewComponent implements OnInit {
   @Output()
   closeSelectionView = new EventEmitter<boolean>();
 
+  showMenu = false;
   singlePlayerMatch = false;
   firstPlayer: Player = null;
   interval = 0;
@@ -28,21 +29,46 @@ export class SelectionViewComponent implements OnInit {
   yellowBorder = '3px' + ' solid ' + '#ccff00';
   redBorder = '3px' + ' solid ' + '#FF0000';
   blueBorder = '3px' + ' solid ' + '#0000FF';
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    console.log(event.key);
+    if (event.key === 'm') {
+      this.showMenu = !this.showMenu;
+    }
+  }
+
   constructor() {
   }
   ngOnInit() {
     console.log('ciao sono dentro!');
     this.players = this.playersInput;
   }
-  showModal() {
-    this.isAble = false;
-    this.searchingTarget(() => {
-      this.choosePlayer();
-      setTimeout(() => {
-        this.singlePlayerMatch = !this.singlePlayerMatch;
-        this.isAble = true;
-      }, 1000);
+  checkSingleSelectionPlayer(): boolean {
+    let booleanOutput = false;
+    this.players.forEach((element) => {
+      if (!element.player.isSelected) {
+        return booleanOutput = true;
+      }
     });
+    return booleanOutput;
+  }
+  showModal() {
+    if (this.checkSingleSelectionPlayer()) {
+      this.isAble = false;
+      this.searchingTarget(() => {
+        this.choosePlayer();
+        setTimeout(() => {
+          this.singlePlayerMatch = !this.singlePlayerMatch;
+          this.isAble = true;
+        }, 1000);
+      });
+    } else {
+      this.textTransiction = 'TUTTI I GIOCATORI HANNO FATTO LA SELEZIONE';
+      this.showTransictionView(() => {
+        this.transiction = false;
+      });
+    }
   }
   closeView(event) {
     this.singlePlayerMatch = event;
@@ -97,25 +123,32 @@ export class SelectionViewComponent implements OnInit {
         }
       }
     });
-    if (this.listTopPlayers.length === 2) {
-      this.showTransictionView(() => {
-          this.transiction = false;
-          this.listTopPlayersOutPut.emit(this.listTopPlayers);
-          this.closeSelectionView.emit(false);
-      });
-    }
   }
 
   showTransictionView(callBack: Function) {
     this.transiction = true;
-    this.textTransiction = 'FINE SELEZIONI';
     setTimeout(() => {
       callBack();
-     }, 4000);
+    }, 4000);
   }
 
   closeTransictionView(event) {
     this.transiction = event;
+  }
+
+  setWinners(gridPlayersWinner: GridItem[]) {
+    if (this.showMenu) {
+      this.showMenu = false;
+    }
+    if (gridPlayersWinner.length === 16) {
+      this.listTopPlayers = gridPlayersWinner;
+      this.textTransiction = 'FINE SELEZIONI';
+      this.showTransictionView(() => {
+        this.transiction = false;
+        this.listTopPlayersOutPut.emit(this.listTopPlayers);
+        this.closeSelectionView.emit(false);
+      });
+    }
   }
 }
 

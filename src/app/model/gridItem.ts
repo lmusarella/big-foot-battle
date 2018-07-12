@@ -12,4 +12,5 @@ export class GridItem {
     bord: string;
     secImg: string;
     boxShadow: string;
+    isChecked: boolean;
 }

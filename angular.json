@@ -21,7 +21,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets/mock-data"
+              "src/assets/mock-data",
+              "src/assets/mock-data/player_data.json",
+              "src/assets/foto"
             ],
             "styles": [
               {

@@ -16,10 +16,10 @@
     position: fixed;
     .wrapper {
         width: 100%;
-        padding-left: 2%;
+        padding-left: 12%;
         display: grid;
         grid-gap: 5px;
-        grid-template-columns: repeat(10, 100px);
+        grid-template-columns: repeat(8, 100px);
         grid-template-rows: 100px 100px 100px;
         grid-auto-flow: row;
         .box {
