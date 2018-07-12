@@ -22,6 +22,9 @@ export class HomePageViewComponent implements OnInit {
   oldSecondPlayer: Player = null;
   interval = 0;
   isAble = true;
+  isFinal = false;
+  winnerPlayer: Player = null;
+  singlePlayerMatch = false;
   isFirstLogin = true;
   textTransiction: string = null;
   transiction = false;
@@ -54,9 +57,16 @@ export class HomePageViewComponent implements OnInit {
         this.showModal();
       });
     } else if (this.countBattle === 6) {
-      this.textTransiction = 'VINCE LA BATTLE: ';
+      this.textTransiction = 'VINCE LA BATTLE';
       this.showTransictionView(() => {
         this.transiction = false;
+        this.players.forEach((element) => {
+          if (!element.player.isEliminated) {
+            this.winnerPlayer = element.player;
+          }
+        });
+        this.isFinal = true;
+        this.singlePlayerMatch = true;
       });
     } else if (this.countBattle === 5) {
       this.countBattle += 1;
@@ -73,7 +83,7 @@ export class HomePageViewComponent implements OnInit {
         this.matchingPlayer = !this.matchingPlayer;
         this.isAbleChange = true;
         this.isAble = true;
-      }, 1000);
+      }, 1500);
     });
   }
   closeView(event) {
@@ -244,7 +254,7 @@ export class HomePageViewComponent implements OnInit {
     this.textTransiction = this.textTransiction;
     setTimeout(() => {
       callBack();
-     }, 3000);
+     }, 5000);
   }
 
   closeTransictionView(event) {

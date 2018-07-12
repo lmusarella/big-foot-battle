@@ -5,7 +5,8 @@
         <div class="animazione2">
             <div class="conteinerAnimation">
             <div class="textAnimation">
-                <div>Selezione: </div> 
+                <div *ngIf="!isFinal">Selezione: </div> 
+                <div *ngIf="isFinal">Vincitore: </div> 
                 <div> 
                     <span>{{firstPlayer.name}}</span>
                 </div>

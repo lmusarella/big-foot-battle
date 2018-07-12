@@ -10,6 +10,8 @@ export class SingleBattleComponent implements OnInit {
     @Input()
     firstPlayer: Player;
     @Input()
+    isFinal: boolean;
+    @Input()
     singlePlayerMatch: boolean;
     @Output()
     firstPlayerOutput = new EventEmitter<Player>();

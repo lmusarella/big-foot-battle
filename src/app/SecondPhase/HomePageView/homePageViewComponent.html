@@ -1,7 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-battle-field-view (firstPlayerOutput)="setWinner($event)" (closeView)="closeView($event)" (sedondPlayerOutPut)="setWinner($event)" [firstPlayer]="firstPlayer" [secondPlayer]="secondPlayer" [matchingPlayer]="matchingPlayer" *ngIf="matchingPlayer && !transiction"></app-battle-field-view>
 <app-transiction-view *ngIf="transiction && !matchingPlayer" [transiction]="transiction" [text]="textTransiction"></app-transiction-view>
-<div class="container_wrapper" *ngIf="!matchingPlayer && !transiction">
+<app-single-battle-field-view [firstPlayer]="winnerPlayer" [isFinal]="isFinal" [singlePlayerMatch]="singlePlayerMatch" *ngIf="singlePlayerMatch"></app-single-battle-field-view>
+<div class="container_wrapper" *ngIf="!matchingPlayer && !transiction && !singlePlayerMatch">
     <div class="wrapper">
         <div class="box" *ngFor="let player of players"  [style.border-radius]="player.border" [style.background-image]="'url(' + player.image + ')'" [style.background-repeat]="player.repeat"
         [style.background-size]="player.size"

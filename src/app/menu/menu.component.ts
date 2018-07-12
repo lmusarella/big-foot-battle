@@ -44,6 +44,9 @@ export class MenuComponent implements OnInit {
     if (event.key === 'w') {
       console.log(this.winnerPlayers);
       if (this.winnerPlayers.length === this.rangePlayer) {
+        if (this.battleNumber === 4) {
+          this.battleNumber = 5;
+        }
         this.countBattle.emit(this.battleNumber);
         if (this.battleNumber > 1) {
             this.players.forEach((element) => {
