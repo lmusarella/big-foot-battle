@@ -1,2 +1,2 @@
-<app-home-page-component *ngIf="!selection" [listTopPlayers]="listTopPlayers"></app-home-page-component>
-<app-selection-component *ngIf="selection"  [playersInput]="playersInput" (listTopPlayersOutPut)="setTopPlayersList($event)" (closeSelectionView)="closeSection($event)"></app-selection-component>
+<app-home-page-component *ngIf="!selection"[countBattle]="countBattle" [listTopPlayers]="listTopPlayers"></app-home-page-component>
+<app-selection-component *ngIf="selection" (countBattleOutPut)="setCountBattle($event)"  [playersInput]="playersInput" (listTopPlayersOutPut)="setTopPlayersList($event)" (closeSelectionView)="closeSection($event)"></app-selection-component>

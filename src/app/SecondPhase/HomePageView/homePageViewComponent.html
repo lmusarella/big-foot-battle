@@ -9,8 +9,9 @@
     </div>
     <div class="bottoni">
         <button [disabled]="!isAble" [style.background]=" !isAble ? 'rgb(202, 60, 60)' : 'rgb(28, 184, 65)'" *ngIf="!matchingPlayer" class="duel-button" (click)="clickButton()">Avvia Duello</button>
+        <button [disabled]="!isAble" [style.background]=" !isAble ? 'rgb(202, 60, 60)' : 'rgb(28, 184, 65)'" *ngIf="!matchingPlayer" class="duel-button" (click)="changeLastBattle()">Annulla Sfida</button>
     </div>
 </div>
-<app-menu *ngIf="showMenu" (winnerPlayerOutput)="setWinners($event)" [players]="players" ></app-menu>
+<app-menu *ngIf="showMenu" [players]="players" ></app-menu>
 
 

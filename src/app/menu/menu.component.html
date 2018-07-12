@@ -4,8 +4,9 @@
         <input type="checkbox" [(ngModel)]="item.isChecked" (change)="onChangeRadioButton(item)" /> 
         {{item.name}} <br>
     </span>
+    <div *ngIf="rangePlayer && showPlayerList">Numero da selezionare: {{rangePlayer}}</div>
 </div>
-  <div class="players_container">
+  <div class="players_container" *ngIf="showPlayerList">
     <ol>
       <li *ngFor="let gridPlayer of gridPlayers">
         <input (change)="onChange(gridPlayer)" [(ngModel)]="gridPlayer.isChecked" type="checkbox" />

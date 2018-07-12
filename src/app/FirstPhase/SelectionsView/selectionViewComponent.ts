@@ -14,7 +14,10 @@ export class SelectionViewComponent implements OnInit {
   listTopPlayersOutPut = new EventEmitter<GridItem[]>();
   @Output()
   closeSelectionView = new EventEmitter<boolean>();
+  @Output()
+  countBattleOutPut = new EventEmitter<number>();
 
+  battleCount = null;
   showMenu = false;
   singlePlayerMatch = false;
   firstPlayer: Player = null;
@@ -24,7 +27,6 @@ export class SelectionViewComponent implements OnInit {
   listTopPlayers: GridItem[] = [];
   players: GridItem[] = [];
   isAble = true;
-  countBattle = 1;
   defaultBorder = '3px' + ' solid ' + '#000000';
   yellowBorder = '3px' + ' solid ' + '#ccff00';
   redBorder = '3px' + ' solid ' + '#FF0000';
@@ -140,15 +142,18 @@ export class SelectionViewComponent implements OnInit {
     if (this.showMenu) {
       this.showMenu = false;
     }
-    if (gridPlayersWinner.length === 16) {
       this.listTopPlayers = gridPlayersWinner;
       this.textTransiction = 'FINE SELEZIONI';
       this.showTransictionView(() => {
         this.transiction = false;
+        this.countBattleOutPut.emit(this.battleCount);
         this.listTopPlayersOutPut.emit(this.listTopPlayers);
         this.closeSelectionView.emit(false);
       });
-    }
+  }
+  setBattleNumber(event) {
+    console.log(event);
+    this.battleCount = event;
   }
 }
 

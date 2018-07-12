@@ -9,6 +9,7 @@ import { GenericService } from './service/genericService';
 })
 export class AppComponent implements OnInit {
   selection = true;
+  countBattle = null;
   listTopPlayers: GridItem[] = [];
   playersInput: GridItem[] = [];
   defaultBorder = '3px' + ' solid ' + '#000000';
@@ -50,6 +51,11 @@ export class AppComponent implements OnInit {
 
   setTopPlayersList(event) {
     this.listTopPlayers = event;
+  }
+
+  setCountBattle(event) {
+    console.log('app component event: ', event);
+    this.countBattle = event;
   }
 }
 

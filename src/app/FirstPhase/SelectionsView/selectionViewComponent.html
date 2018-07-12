@@ -12,6 +12,6 @@
     </div>
 </div>
 
-<app-menu #menu *ngIf="showMenu" (winnerPlayerOutput)="setWinners($event)" [players]="players" ></app-menu>
+<app-menu #menu *ngIf="showMenu" (countBattle)="setBattleNumber($event)" (winnerPlayerOutput)="setWinners($event)" [players]="players" ></app-menu>
 
 

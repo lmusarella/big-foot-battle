@@ -10,6 +10,8 @@ import { Player } from '../../model/player';
 export class HomePageViewComponent implements OnInit {
   @Input()
   listTopPlayers: GridItem[];
+  @Input()
+  countBattle: number;
 
   matchingPlayer = false;
   showMenu = false;
@@ -23,7 +25,6 @@ export class HomePageViewComponent implements OnInit {
   textTransiction: string = null;
   transiction = false;
   players: GridItem[] = [];
-  countBattle = 1;
   defaultBorder = '3px' + ' solid ' + '#000000';
   greenBorder = '3px' + ' solid ' + '#00FF00';
   redBorder = '3px' + ' solid ' + '#FF0000';
@@ -38,12 +39,13 @@ export class HomePageViewComponent implements OnInit {
   constructor() {
   }
   ngOnInit() {
+    console.log(this.countBattle);
     this.players = this.listTopPlayers;
     this.resetValuePlayer(this.players);
   }
 
   clickButton() {
-    if (this.isFirstLogin) {
+    if (this.isFirstLogin && this.countBattle === 1) {
       this.isFirstLogin = false;
       this.textTransiction = 'INIZIO OTTAVI';
       this.showTransictionView(() => {
@@ -89,6 +91,7 @@ export class HomePageViewComponent implements OnInit {
           console.log('primo giocatore trovato: ' + element.text);
           element.bord = this.redBorder;
           this.firstPlayer = element.player;
+          this.oldFirstPlayer = element.player;
         } else if (index === firstPlayerIndex && (element.player.isEliminated || element.player.isSelected)) {
           do { firstPlayerIndex = Math.floor(Math.random() * range); }
           while (firstPlayerIndex === secondPlayerIndex);
@@ -105,6 +108,7 @@ export class HomePageViewComponent implements OnInit {
           console.log('secondo giocatore trovato: ' + element.text);
           element.bord = this.blueBorder;
           this.secondPlayer = element.player;
+          this.oldSecondPlayer = element.player;
           }
         } else if (index === secondPlayerIndex && (element.player.isEliminated || element.player.isSelected || ((element.player.isBomber === this.firstPlayer.isBomber && this.countBattle === 1)))) {
           do { secondPlayerIndex = Math.floor(Math.random() * range); }
@@ -202,7 +206,24 @@ export class HomePageViewComponent implements OnInit {
     this.nextBattle();
   }
 
-  changeLastBattle () {
+  changeLastBattle() {
+    if (this.oldFirstPlayer && this.oldSecondPlayer) {
+      this.players.forEach((element) => {
+        if (element.player.id === this.oldFirstPlayer.id || element.player.id === this.secondPlayer.id) {
+          if (element.player.isEliminated) {
+            element.player.isEliminated = false;
+            element.player.isSelected = true;
+            element.secImg = null;
+            element.bord = this.greenBorder;
+          } else if (!element.player.isEliminated) {
+            element.player.isEliminated = true;
+            element.player.isSelected = false;
+            element.secImg = './assets/foto/X.png';
+            element.bord = this.redBorder;
+          }
+        }
+      });
+    }
   }
 
   resetValuePlayer(list: GridItem[]) {
@@ -227,8 +248,6 @@ export class HomePageViewComponent implements OnInit {
     this.transiction = event;
   }
 
-  setWinners(gridPlayersWinner: GridItem[]) {
-  }
 }
 
 
