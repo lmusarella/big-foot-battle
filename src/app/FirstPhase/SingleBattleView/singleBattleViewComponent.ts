@@ -31,6 +31,7 @@ export class SingleBattleComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log(this.isFinal);
     }
 
     chooseWinner() {

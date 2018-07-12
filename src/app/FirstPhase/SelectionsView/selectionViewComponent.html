@@ -14,4 +14,5 @@
 
 <app-menu #menu *ngIf="showMenu" (countBattle)="setBattleNumber($event)" (winnerPlayerOutput)="setWinners($event)" [players]="players" ></app-menu>
 
+<app-add-player *ngIf="showAddPlayer" [players]="players"></app-add-player>
 

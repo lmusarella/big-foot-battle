@@ -17,6 +17,7 @@ export class SelectionViewComponent implements OnInit {
   @Output()
   countBattleOutPut = new EventEmitter<number>();
 
+  showAddPlayer = false;
   battleCount = null;
   showMenu = false;
   singlePlayerMatch = false;
@@ -37,6 +38,8 @@ export class SelectionViewComponent implements OnInit {
     console.log(event.key);
     if (event.key === 'm') {
       this.showMenu = !this.showMenu;
+    } else if (event.key === 'p') {
+      this.showAddPlayer = !this.showAddPlayer;
     }
   }
 

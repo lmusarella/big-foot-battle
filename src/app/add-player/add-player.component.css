@@ -1,0 +1,11 @@
+.menu_addPlayer {
+    background: gray;
+    border: black solid 1px;
+    height: 50%;
+    width: 34%;
+    right: 0px;
+    padding: 5px;
+    position: fixed;
+    z-index: 10;
+    overflow-y: scroll;
+}

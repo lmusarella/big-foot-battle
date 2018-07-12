@@ -59,12 +59,12 @@ export class HomePageViewComponent implements OnInit {
     } else if (this.countBattle === 6) {
       this.textTransiction = 'VINCE LA BATTLE';
       this.showTransictionView(() => {
-        this.transiction = false;
         this.players.forEach((element) => {
           if (!element.player.isEliminated) {
             this.winnerPlayer = element.player;
           }
         });
+        this.transiction = false;
         this.isFinal = true;
         this.singlePlayerMatch = true;
       });

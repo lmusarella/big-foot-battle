@@ -1,6 +1,6 @@
 import { Player } from './player';
 export class GridItem {
-    id: string;
+    id: number;
     text: string;
     cols: string;
     rows: string;

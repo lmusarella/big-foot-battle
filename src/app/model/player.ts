@@ -1,5 +1,5 @@
 export interface Player {
-    id: string;
+    id: number;
     img: string;
     name: string;
     isSelected: boolean;
@@ -11,7 +11,7 @@ export interface Player {
 }
 
 export class PlayerImpl implements Player {
-    id: string;
+    id: number;
     img: string;
     name: string;
     isSelected: boolean;

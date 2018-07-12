@@ -12,6 +12,7 @@ import { SingleBattleComponent } from './FirstPhase/SingleBattleView/singleBattl
 import { TransictionComponent } from './UtilityView/transictionView';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPlayerComponent } from './add-player/add-player.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SelectionViewComponent,
     SingleBattleComponent,
     TransictionComponent,
-    MenuComponent
+    MenuComponent,
+    AddPlayerComponent
   ],
   imports: [
     FormsModule,
