@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
     { id: 3, isChecked: false, name: 'SEMIFINALE' },
     { id: 4, isChecked: false, name: 'FINALE' }
   ];
+  redBorder = '3px' + ' solid ' + '#FF0000';
   defaultBorder = '3px' + ' solid ' + '#000000';
   gridPlayers: GridItem[];
   playerSelected: GridItem;
@@ -51,6 +52,7 @@ export class MenuComponent implements OnInit {
                 element.player.isSelected = true;
                 element.player.permanentEliminated = true;
                 element.secImg = './assets/foto/X.png';
+                element.bord = this.redBorder;
                 this.winnerPlayers.push(element);
               }
             });

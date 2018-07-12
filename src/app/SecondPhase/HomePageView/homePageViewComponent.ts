@@ -13,6 +13,7 @@ export class HomePageViewComponent implements OnInit {
   @Input()
   countBattle: number;
 
+  isAbleChange = false;
   matchingPlayer = false;
   showMenu = false;
   firstPlayer: Player = null;
@@ -70,6 +71,7 @@ export class HomePageViewComponent implements OnInit {
       this.choosePlayer();
       setTimeout(() => {
         this.matchingPlayer = !this.matchingPlayer;
+        this.isAbleChange = true;
         this.isAble = true;
       }, 1000);
     });
@@ -135,6 +137,7 @@ export class HomePageViewComponent implements OnInit {
       }
     });
     if ((range / twoPow) === (eliminatedPlayerCount - deltaEliminated) && (range / twoPow) === winnerPlayerCount) {
+      this.isAbleChange = false;
       this.countBattle += 1;
       console.log('Secondo round sta per iniziare... ');
       let textTransiction = null;
@@ -209,7 +212,7 @@ export class HomePageViewComponent implements OnInit {
   changeLastBattle() {
     if (this.oldFirstPlayer && this.oldSecondPlayer) {
       this.players.forEach((element) => {
-        if (element.player.id === this.oldFirstPlayer.id || element.player.id === this.secondPlayer.id) {
+        if (element.player.id === this.oldFirstPlayer.id || element.player.id === this.oldSecondPlayer.id) {
           if (element.player.isEliminated) {
             element.player.isEliminated = false;
             element.player.isSelected = true;
